@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mood Tracking | MindCare AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            MindCare AI
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="mood-section">
+
+        <div class="mood-card">
+
+            <h1>
+                How are you feeling today? 😊
+            </h1>
+
+            <p>
+                Take a moment to check in with yourself.
+            </p>
+
+
+            <form method="POST">
+
+                <div class="mood-options">
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="mood"
+                            value="Happy"
+                            required
+                        >
+                        😊 Happy
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="mood"
+                            value="Calm"
+                        >
+                        😌 Calm
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="mood"
+                            value="Okay"
+                        >
+                        🙂 Okay
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="mood"
+                            value="Sad"
+                        >
+                        😔 Sad
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="mood"
+                            value="Stressed"
+                        >
+                        😣 Stressed
+                    </label>
+
+                </div>
+
+
+                <textarea
+                    name="note"
+                    placeholder="Write something about how you feel (optional)"
+                    rows="4"
+                ></textarea>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Save Mood
+                </button>
+
+            </form>
+
+        </div>
+
+
+        {% if entries %}
+
+        <div class="mood-history">
+
+            <h2>
+                Your Recent Moods
+            </h2>
+
+
+            {% for entry in entries %}
+
+            <div class="mood-entry">
+
+                <strong>
+                    {{ entry.mood }}
+                </strong>
+
+
+                {% if entry.note %}
+
+                <p>
+                    {{ entry.note }}
+                </p>
+
+                {% endif %}
+
+
+                <small>
+                    {{ entry.created_at }}
+                </small>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+</body>
+
+</html>

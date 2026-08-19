@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard | MindCare AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            MindCare AI
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <span>
+                Hi, {{ session.get("username") }}
+            </span>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard">
+
+        <div class="dashboard-header">
+
+            <h1>
+                Welcome, {{ session.get("username") }} 💙
+            </h1>
+
+            <p>
+                How are you feeling today?
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-cards">
+
+            <!-- AI CHAT -->
+
+            <div class="dashboard-card">
+
+                <div class="feature-icon">
+                    🤖
+                </div>
+
+                <h2>
+                    AI Chat Support
+                </h2>
+
+                <p>
+                    Talk with MindCare AI and express
+                    your thoughts in a safe space.
+                </p>
+
+                <a
+    href="{{ url_for('chat') }}"
+    class="dashboard-button"
+>
+    Chat with MindCare AI
+</a>
+
+            </div>
+
+
+            <!-- MOOD TRACKING -->
+
+            <div class="dashboard-card">
+
+                <div class="feature-icon">
+                    😊
+                </div>
+
+                <h2>
+                    Mood Tracking
+                </h2>
+
+                <p>
+                    Record your mood and understand
+                    your emotional patterns.
+                </p>
+
+                <a
+                    href="/mood"
+                    class="dashboard-button"
+                >
+                    Track Mood
+                </a>
+
+            </div>
+
+
+            <!-- STRESS RELIEF -->
+
+            <!-- STRESS RELIEF -->
+
+<div class="dashboard-card">
+
+    <div class="feature-icon">
+        🧘
+    </div>
+
+    <h2>
+        Stress Relief
+    </h2>
+
+    <p>
+        Explore simple activities to relax
+        and manage daily stress.
+    </p>
+
+    <a
+        href="{{ url_for('stress_relief') }}"
+        class="dashboard-button"
+    >
+        Explore
+    </a>
+
+</div>

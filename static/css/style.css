@@ -1,0 +1,397 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f9ff;
+    color: #222;
+}
+
+
+/* ==========================================
+   NAVBAR
+   ========================================== */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 8%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #5b6ee1;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #5b6ee1;
+}
+
+
+/* ==========================================
+   HERO
+   ========================================== */
+
+.hero {
+    min-height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+
+.primary-btn {
+    display: inline-block;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 8px;
+    background: #5b6ee1;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    opacity: 0.9;
+}
+
+.secondary-btn {
+    display: inline-block;
+    padding: 13px 25px;
+    margin-left: 10px;
+    border: 1px solid #5b6ee1;
+    border-radius: 8px;
+    color: #5b6ee1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   FEATURES
+   ========================================== */
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding: 50px 8%;
+}
+
+.feature-card {
+    width: 280px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+.feature-card h2 {
+    margin: 15px 0;
+}
+
+.feature-card p {
+    line-height: 1.6;
+    color: #666;
+}
+
+.feature-icon {
+    font-size: 42px;
+}
+
+
+/* ==========================================
+   AUTH
+   ========================================== */
+
+.auth-section {
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.auth-card {
+    width: 400px;
+    max-width: 100%;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.auth-card h1 {
+    margin-bottom: 10px;
+}
+
+.auth-card > p {
+    margin-bottom: 25px;
+    color: #666;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-card input {
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.auth-card button {
+    font-size: 15px;
+}
+
+.error-message {
+    background: #ffe8e8;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.auth-link {
+    margin-top: 20px;
+}
+
+.auth-link a {
+    color: #5b6ee1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   DASHBOARD
+   ========================================== */
+
+.dashboard {
+    padding: 60px 8%;
+    min-height: 600px;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.dashboard-header p {
+    font-size: 18px;
+    color: #666;
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.dashboard-card {
+    width: 280px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card h2 {
+    margin: 15px 0 10px;
+}
+
+.dashboard-card p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.dashboard-card button {
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    background: #aaa;
+    color: white;
+    cursor: not-allowed;
+    font-weight: bold;
+}
+
+.dashboard-button {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 8px;
+    background: #5b6ee1;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   MOOD TRACKING
+   ========================================== */
+
+.mood-section {
+    padding: 50px 8%;
+    min-height: 600px;
+}
+
+.mood-card {
+    max-width: 600px;
+    margin: auto;
+    padding: 35px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.mood-card h1 {
+    margin-bottom: 10px;
+}
+
+.mood-card > p {
+    margin-bottom: 25px;
+    color: #666;
+}
+
+.mood-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.mood-options label {
+    padding: 12px 15px;
+    background: #f5f8ff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.mood-card textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    margin-bottom: 20px;
+    font-family: inherit;
+}
+
+.mood-history {
+    max-width: 600px;
+    margin: 35px auto 0;
+}
+
+.mood-history h2 {
+    margin-bottom: 15px;
+}
+
+.mood-entry {
+    background: white;
+    padding: 18px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.mood-entry p {
+    margin: 8px 0;
+    color: #555;
+}
+
+.mood-entry small {
+    color: #777;
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .features {
+        padding: 30px 20px;
+    }
+
+    .dashboard {
+        padding: 40px 20px;
+    }
+
+    .auth-card {
+        padding: 25px;
+    }
+
+}

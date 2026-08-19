@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stress Relief | MindCare AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        .relief-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .relief-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .relief-header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .relief-header p {
+            font-size: 20px;
+        }
+
+        .relief-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .relief-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .relief-icon {
+            font-size: 50px;
+        }
+
+        .relief-card h2 {
+            margin: 15px 0 10px;
+        }
+
+        .relief-card p {
+            line-height: 1.6;
+        }
+
+        .breathing-circle {
+            width: 130px;
+            height: 130px;
+            margin: 25px auto 15px;
+
+            border-radius: 50%;
+
+            background: #dbeafe;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 35px;
+            font-weight: bold;
+
+            transition: transform 1s ease;
+        }
+
+        .breathing-circle.inhale {
+            transform: scale(1.25);
+        }
+
+        .breathing-circle.exhale {
+            transform: scale(0.8);
+        }
+
+        #breathingText {
+            font-size: 20px;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .relief-button {
+            margin-top: 10px;
+            padding: 12px 25px;
+
+            border: none;
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            MindCare AI
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <span>
+                Hi, {{ session.get("username") }}
+            </span>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <div class="relief-container">
+
+
+        <div class="relief-header">
+
+            <h1>
+                🧘 Stress Relief
+            </h1>
+
+            <p>
+                Take a small break and give yourself
+                a moment to relax.
+            </p>
+
+        </div>
+
+
+        <div class="relief-grid">
+
+
+            <!-- BREATHING -->
+
+            <div class="relief-card">
+
+                <div class="relief-icon">
+                    🌬️
+                </div>
+
+                <h2>
+                    Breathing Exercise
+                </h2>
+
+                <p>
+                    Follow the breathing pattern
+                    to relax your mind and body.
+                </p>
+
+
+                <div
+                    id="breathingCircle"
+                    class="breathing-circle"
+                >
+                    Ready
+                </div>
+
+
+                <p id="breathingText">
+                    Press Start to begin
+                </p>
+
+
+                <button
+                    type="button"
+                    class="relief-button"
+                    id="startBreathingButton"
+                >
+                    Start
+                </button>
+
+            </div>
+
+
+            <!-- RELAXATION -->
+
+            <div class="relief-card">
+
+                <div class="relief-icon">
+                    🧘
+                </div>
+
+                <h2>
+                    Relaxation
+                </h2>
+
+                <p>
+                    Sit comfortably, relax your
+                    shoulders and take a few
+                    slow breaths.
+                </p>
+
+                <button
+                    type="button"
+                    class="relief-button"
+                    onclick="relaxationMessage()"
+                >
+                    Begin
+                </button>
+
+            </div>
+
+
+            <!-- POSITIVE MOMENT -->
+
+            <div class="relief-card">
+
+                <div class="relief-icon">
+                    🌱
+                </div>
+
+                <h2>
+                    Positive Moment
+                </h2>
+
+                <p>
+                    Think about one small thing
+                    that made you smile today.
+                </p>
+
+                <button
+                    type="button"
+                    class="relief-button"
+                    onclick="positiveMessage()"
+                >
+                    Try It
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+        <a
+            href="/dashboard"
+            class="back-button"
+        >
+            ← Back to Dashboard
+        </a>
+
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        let breathingTimer = null;
+
+        let phaseIndex = 0;
+
+        let remaining = 4;
+
+
+        const phases = [
+
+            {
+                name: "Breathe In",
+                seconds: 4,
+                className: "inhale"
+            },
+
+            {
+                name: "Hold",
+                seconds: 2,
+                className: ""
+            },
+
+            {
+                name: "Breathe Out",
+                seconds: 6,
+                className: "exhale"
+            }
+
+        ];
+
+
+        function updateBreathing() {
+
+            const circle =
+                document.getElementById(
+                    "breathingCircle"
+                );
+
+            const text =
+                document.getElementById(
+                    "breathingText"
+                );
+
+
+            const phase =
+                phases[phaseIndex];
+
+
+            circle.innerText =
+                remaining;
+
+
+            text.innerText =
+                phase.name;
+
+
+            circle.classList.remove(
+                "inhale",
+                "exhale"
+            );
+
+
+            if (phase.className) {
+
+                circle.classList.add(
+                    phase.className
+                );
+
+            }
+
+
+            if (remaining > 1) {
+
+                remaining--;
+
+            }
+
+            else {
+
+                phaseIndex++;
+
+                if (
+                    phaseIndex >= phases.length
+                ) {
+
+                    phaseIndex = 0;
+
+                }
+
+
+                remaining =
+                    phases[phaseIndex].seconds;
+
+            }
+
+        }
+
+
+        function startBreathing() {
+
+            if (breathingTimer !== null) {
+
+                clearInterval(
+                    breathingTimer
+                );
+
+            }
+
+
+            phaseIndex = 0;
+
+            remaining = 4;
+
+
+            updateBreathing();
+
+
+            breathingTimer =
+                setInterval(
+                    updateBreathing,
+                    1000
+                );
+
+        }
+
+
+        function relaxationMessage() {
+
+            const text =
+                document.getElementById(
+                    "breathingText"
+                );
+
+            text.innerText =
+                "Relax your shoulders and take a slow breath. 💙";
+
+        }
+
+
+        function positiveMessage() {
+
+            const text =
+                document.getElementById(
+                    "breathingText"
+                );
+
+            text.innerText =
+                "Think of one small thing you're grateful for today. 🌱";
+
+        }
+
+
+        document
+            .getElementById(
+                "startBreathingButton"
+            )
+            .addEventListener(
+                "click",
+                startBreathing
+            );
+
+
+    </script>
+
+
+</body>
+
+</html>
